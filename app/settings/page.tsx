@@ -7,7 +7,7 @@ import {
   Shield, Lock, Eye, EyeOff, Smartphone, Monitor, Database,
   Users, Bell, BellOff, Download, Upload, Trash2, Key,
   Globe, Wifi, WifiOff, CheckCircle, AlertTriangle, Info,
-  Settings, User, Mail, Phone, MapPin, Calendar, Save, Clock
+  Settings as SettingsIcon, User, Mail, Phone, MapPin, Calendar, Save, Clock
 } from 'lucide-react'
 
 export default function Settings() {

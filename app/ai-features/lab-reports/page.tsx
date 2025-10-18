@@ -377,7 +377,7 @@ export default function LabReports() {
               animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
               transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
             >
-              <button
+              <motion.button
                 onClick={() => fileInputRef.current?.click()}
                 className="group relative inline-flex items-center px-8 py-4 bg-sanjeevan-purple text-white font-inter font-medium text-sm uppercase tracking-wider transition-all duration-300 hover:bg-sanjeevan-dark-purple hover:scale-[1.02] active:scale-[0.98]"
                 whileHover={{ scale: 1.02 }}
@@ -386,7 +386,7 @@ export default function LabReports() {
                 <Upload className="w-5 h-5 mr-3" />
                 <span className="relative z-10">Upload Lab Report</span>
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              </button>
+              </motion.button>
               <input
                 ref={fileInputRef}
                 type="file"

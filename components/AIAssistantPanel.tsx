@@ -13,6 +13,7 @@ interface Message {
   sender: 'user' | 'assistant'
   timestamp: Date
   type?: 'text' | 'voice'
+  transcript?: string
 }
 
 export default function AIAssistantPanel() {
@@ -21,6 +22,7 @@ export default function AIAssistantPanel() {
   const [chatMode, setChatMode] = useState<'text' | 'voice'>('text') // New state for chat mode
   const [isConnectedToVoiceAgent, setIsConnectedToVoiceAgent] = useState(false)
   const [connectionStatus, setConnectionStatus] = useState<'disconnected' | 'connecting' | 'connected' | 'error'>('disconnected')
+  const [transcript, setTranscript] = useState('')
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
@@ -46,7 +48,7 @@ export default function AIAssistantPanel() {
   useEffect(() => {
     return () => {
       if (wsRef.current) {
-        wsRef.current.disconnect()
+        wsRef.current.close()
       }
     }
   }, [])
@@ -151,7 +153,7 @@ export default function AIAssistantPanel() {
 
   const disconnectFromVoiceAgent = () => {
     if (wsRef.current) {
-      wsRef.current.disconnect()
+      wsRef.current.close()
       wsRef.current = null
     }
     setIsConnectedToVoiceAgent(false)
@@ -174,10 +176,10 @@ export default function AIAssistantPanel() {
     setMessages(prev => [...prev, userMessage])
     setInputText('')
 
-    // If connected to voice agent, send via LiveKit data channel
+    // If connected to voice agent, send via WebSocket
     if (isConnectedToVoiceAgent && wsRef.current) {
       try {
-        // Send message via LiveKit data channel
+        // Send message via WebSocket
         const data = {
           type: 'query',
           message: messageText,
@@ -185,15 +187,12 @@ export default function AIAssistantPanel() {
           timestamp: new Date().toISOString()
         }
         
-        await wsRef.current.localParticipant.publishData(
-          new TextEncoder().encode(JSON.stringify(data)),
-          { reliable: true }
-        )
+        wsRef.current.send(JSON.stringify(data))
         
-        console.log('📤 Message sent via LiveKit:', messageText)
+        console.log('📤 Message sent via WebSocket:', messageText)
         return
       } catch (error) {
-        console.error('❌ Error sending message via LiveKit:', error)
+        console.error('❌ Error sending message via WebSocket:', error)
         // Fall back to regular text chat
       }
     }
@@ -249,7 +248,11 @@ export default function AIAssistantPanel() {
       
       // Auto-speak AI responses in voice mode
       if (chatMode === 'voice' && isConnectedToVoiceAgent) {
-        speakResponse(data.message)
+        // Use Web Speech API for text-to-speech
+        if ('speechSynthesis' in window) {
+          const utterance = new SpeechSynthesisUtterance(data.message)
+          speechSynthesis.speak(utterance)
+        }
       }
     } catch (error) {
       console.error('❌ Error calling API:', error)

@@ -19,7 +19,7 @@
     "verify": "hardhat verify"
   },
   "dependencies": {
-    "@google/genai": "^1.25.0",
+    "@google/generative-ai": "^0.2.1",
     "@livekit/components-react": "^2.9.15",
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
     "@openzeppelin/contracts": "^5.4.0",

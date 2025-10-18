@@ -12,7 +12,7 @@ import {
   Clock,
   Heart,
   Brain,
-  Lungs,
+  Wind,
   Activity,
   Thermometer,
   Eye,
@@ -66,7 +66,7 @@ export default function SymptomChecker() {
     { name: 'General', icon: Activity, color: 'from-blue-500 to-cyan-500' },
     { name: 'Neurological', icon: Brain, color: 'from-purple-500 to-pink-500' },
     { name: 'Cardiovascular', icon: Heart, color: 'from-red-500 to-pink-500' },
-    { name: 'Respiratory', icon: Lungs, color: 'from-green-500 to-emerald-500' },
+    { name: 'Respiratory', icon: Wind, color: 'from-green-500 to-emerald-500' },
     { name: 'Digestive', icon: Thermometer, color: 'from-orange-500 to-red-500' },
     { name: 'Musculoskeletal', icon: Activity, color: 'from-indigo-500 to-purple-500' },
     { name: 'Dermatological', icon: Eye, color: 'from-yellow-500 to-orange-500' },
@@ -257,7 +257,7 @@ export default function SymptomChecker() {
               animate={{ opacity: isLoaded ? 1 : 0, y: isLoaded ? 0 : 20 }}
               transition={{ duration: 0.6, delay: 0.6, ease: 'easeOut' }}
             >
-              <button
+              <motion.button
                 onClick={analyzeSymptoms}
                 disabled={selectedSymptoms.length === 0 || isAnalyzing}
                 className={`group relative inline-flex items-center px-8 py-4 font-inter font-medium text-sm uppercase tracking-wider transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${
@@ -273,7 +273,7 @@ export default function SymptomChecker() {
                   {isAnalyzing ? 'Analyzing...' : 'Analyze Symptoms'}
                 </span>
                 <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              </button>
+              </motion.button>
             </motion.div>
 
             {/* Status indicators */}

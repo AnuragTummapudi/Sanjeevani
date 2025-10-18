@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from 'next/server'
 import { ai } from '@/lib/gemini'
 
 export async function POST(request: NextRequest) {
+  const { fileName, fileSize, contentType, content } = await request.json()
+  
   try {
-    const { fileName, fileSize, contentType, content } = await request.json()
 
     if (!content) {
       return NextResponse.json(
@@ -44,12 +45,10 @@ Guidelines:
 - Always recommend consulting a doctor for serious concerns`
 
     // Use Gemini API for analysis
-    const response = await ai.models.generateContent({
-      model: "gemini-2.5-flash",
-      contents: prompt,
-    });
-
-    const summary = response.text
+    const model = ai.getGenerativeModel({ model: "gemini-2.0-flash" });
+    const result = await model.generateContent(prompt);
+    const response = await result.response;
+    const summary = response.text();
 
     if (!summary) {
       throw new Error('No response from Gemini AI')
@@ -88,7 +87,7 @@ Remember: Always talk to your doctor about any health concerns!`
     return NextResponse.json({
       success: true,
       summary: fallbackSummary,
-      fileName: fileName,
+      fileName: fileName || 'Medical Report',
       timestamp: new Date().toISOString(),
       fallback: true
     })
