@@ -32,7 +32,7 @@ interface VitalsData {
   calories: number
   sleepHours: number
   stressLevel: number
-  deviceType: 'watch' | 'phone' | 'manual'
+  deviceType: 'watch' | 'phone' | 'manual' | 'demo'
 }
 
 interface HealthAlert {

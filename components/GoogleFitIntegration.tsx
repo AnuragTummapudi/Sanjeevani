@@ -15,6 +15,30 @@ import {
   Zap
 } from 'lucide-react'
 
+// Type declarations for Google API
+declare global {
+  interface Window {
+    gapi?: {
+      load: (api: string, callback: () => void) => void
+      client: {
+        init: (config: any) => Promise<void>
+        fitness?: {
+          users: {
+            dataSources: {
+              datasets: {
+                get: (params: any) => Promise<any>
+              }
+            }
+          }
+        }
+      }
+      auth2: {
+        getAuthInstance: () => any
+      }
+    }
+  }
+}
+
 interface GoogleFitData {
   heartRate: number
   steps: number

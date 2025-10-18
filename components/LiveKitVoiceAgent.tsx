@@ -7,6 +7,14 @@ import {
   Phone, Zap, MessageSquare, Bot, X, Minimize2, Maximize2 
 } from 'lucide-react'
 
+// Type declarations for Web Speech API
+declare global {
+  interface Window {
+    SpeechRecognition?: any
+    webkitSpeechRecognition?: any
+  }
+}
+
 interface Message {
   id: string
   text: string
@@ -107,7 +115,7 @@ export default function LiveKitVoiceAgent({ isOpen, onClose }: LiveKitVoiceAgent
         addMessage('🔌 Disconnected from Voice Agent', 'assistant')
       })
 
-      room.on(RoomEvent.TrackSubscribed, (track: RemoteTrack, publication: RemoteTrackPublication) => {
+      room.on(RoomEvent.TrackSubscribed, (track: any, publication: any) => {
         console.log('📡 Track subscribed:', track.kind)
         
         if (track.kind === Track.Kind.Audio) {

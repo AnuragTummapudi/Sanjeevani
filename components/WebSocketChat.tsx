@@ -7,7 +7,7 @@ import { Send, Phone, Video, X, User, MessageCircle } from 'lucide-react'
 interface Message {
   id: string
   text: string
-  sender: 'user' | 'doctor' | 'patient'
+  sender: 'user' | 'doctor' | 'patient' | 'system'
   timestamp: Date
   type: 'text' | 'system'
 }
