@@ -1,25 +1,27 @@
-# Sanjeevan Landing Page
+# Sanjeevan Health Platform
 
-A modern, interactive React landing page for Sanjeevan - AI-Powered Health Diagnostics, featuring a 3D Spline model and smooth animations.
+A comprehensive AI-powered health diagnostics platform built with modern web technologies. Sanjeevan provides advanced medical intelligence through accessible and precise healthcare solutions.
 
 ## Features
 
-- 🎨 **Modern Design**: Clean, minimalist design with white background and subtle dot pattern
-- 🧬 **3D DNA Model**: Interactive Spline 3D model integrated using React
+- 🎨 **Modern Design**: Clean, minimalist design with centered layout and smooth gradients
+- 🧠 **AI-Powered Analysis**: Advanced medical intelligence for health diagnostics
 - ✨ **Smooth Animations**: Framer Motion animations throughout the site
 - 📱 **Responsive**: Fully responsive design for all devices
-- 🎯 **Interactive Elements**: Hover effects, floating animations, and particle effects
-- 🎭 **Typewriter Effect**: Dynamic text animations
-- 🌟 **Particle System**: Floating particles for enhanced visual appeal
+- 🎯 **Interactive Elements**: Hover effects and smooth transitions
+- 🏥 **Health Monitoring**: Real-time vitals tracking and analysis
+- 📊 **Medical Reports**: AI-generated health insights and recommendations
+- 🔒 **Secure & Compliant**: Enterprise-grade security and privacy
 
 ## Tech Stack
 
-- **Next.js 14** - React framework
-- **TypeScript** - Type safety
-- **Tailwind CSS** - Styling
-- **Framer Motion** - Animations
-- **Spline** - 3D models
-- **React Spline** - Spline integration
+- **Next.js 14** - React framework with App Router
+- **TypeScript** - Type safety and better development experience
+- **Tailwind CSS** - Utility-first CSS framework
+- **Framer Motion** - Smooth animations and transitions
+- **Google Generative AI** - AI-powered health analysis
+- **LiveKit** - Real-time voice interactions
+- **Resend** - Email notifications and reports
 
 ## Setup Instructions
 
@@ -28,80 +30,113 @@ A modern, interactive React landing page for Sanjeevan - AI-Powered Health Diagn
    npm install
    ```
 
-2. **Run the development server**:
+2. **Set up environment variables**:
+   ```bash
+   cp .env.example .env.local
+   # Edit .env.local with your API keys
+   ```
+
+3. **Run the development server**:
    ```bash
    npm run dev
    ```
 
-3. **Open your browser** and navigate to `http://localhost:3000`
+4. **Open your browser** and navigate to `http://localhost:3000`
 
 ## Project Structure
 
 ```
 UI/
-├── app/
-│   ├── globals.css          # Global styles
-│   ├── layout.tsx           # Root layout
-│   └── page.tsx             # Main page component
-├── components/
-│   ├── SplineModel.tsx      # 3D model component
-│   ├── InteractiveButton.tsx # Animated button
-│   ├── AnimatedText.tsx     # Text animations
-│   └── FloatingElements.tsx # Floating animations
-├── package.json
-├── tailwind.config.js
-└── next.config.js
+├── app/                    # Next.js App Router
+│   ├── page.tsx           # Main landing page
+│   ├── layout.tsx         # Root layout
+│   ├── globals.css        # Global styles
+│   ├── api/               # API routes
+│   │   ├── chat/          # AI chat endpoint
+│   │   ├── health-analysis/ # Health analysis API
+│   │   └── ...            # Other API endpoints
+│   └── dashboard/         # Dashboard pages
+├── components/            # React components
+│   ├── AIAssistantPanel.tsx # AI chat interface
+│   ├── VitalsMonitor.tsx    # Health monitoring
+│   └── ...                # Other components
+├── lib/                   # Utility libraries
+│   ├── gemini.ts         # Google AI integration
+│   └── email-service.ts  # Email notifications
+├── public/                # Static assets
+└── package.json          # Dependencies
 ```
 
-## Components
+## Key Features
 
-### SplineModel
-- Handles the 3D DNA model integration
-- Includes loading states and error handling
-- Dynamic import for better performance
+### AI-Powered Health Analysis
+- Google Generative AI integration for medical insights
+- Real-time health data processing
+- Intelligent symptom analysis and recommendations
 
-### InteractiveButton
-- Animated CTA button with hover effects
-- Multiple variants (primary/secondary)
-- Smooth transitions and feedback
+### Health Monitoring
+- Real-time vitals tracking
+- Wearable device integration
+- Historical health data visualization
 
-### AnimatedText
-- Text animations with customizable delays
-- Typewriter effect for dynamic text
-- Smooth fade-in animations
+### Voice Interactions
+- LiveKit integration for voice-based health consultations
+- Real-time speech-to-text and text-to-speech
+- Interactive health assessments
 
-### FloatingElements
-- Floating animations for visual elements
-- Particle system for background effects
-- Configurable timing and behavior
+### Medical Reports
+- AI-generated health reports
+- Lab report analysis
+- Email delivery of health insights
 
-## Customization
+## Environment Variables
 
-- **Colors**: Modify colors in `tailwind.config.js`
-- **Fonts**: Update font imports in `layout.tsx`
-- **Animations**: Adjust timing in component files
-- **Spline Model**: Change the scene URL in `SplineModel.tsx`
+Create a `.env.local` file with the following variables:
 
-## Browser Support
+```env
+# Google AI
+GOOGLE_AI_API_KEY=your_google_ai_api_key
 
-- Chrome (recommended)
-- Firefox
-- Safari
-- Edge
+# LiveKit
+LIVEKIT_API_KEY=your_livekit_api_key
+LIVEKIT_API_SECRET=your_livekit_api_secret
 
-## Performance Notes
+# Email Service
+RESEND_API_KEY=your_resend_api_key
 
-- The Spline model is dynamically imported to prevent SSR issues
-- Animations are optimized for 60fps
-- Images and assets are optimized for web delivery
+# Database (if using)
+DATABASE_URL=your_database_url
+```
+
+## API Endpoints
+
+- `POST /api/chat` - AI chat interface
+- `POST /api/health-analysis` - Health data analysis
+- `GET /api/google-fit-data` - Wearable device data
+- `POST /api/send-health-alert` - Health alerts
+- `GET /api/livekit-token` - Voice interaction tokens
+
+## Security & Privacy
+
+- HIPAA-compliant data handling
+- End-to-end encryption for sensitive data
+- Secure API authentication
+- Privacy-first design principles
 
 ## Deployment
 
-For production deployment:
+### Netlify Deployment
+1. Connect your GitHub repository to Netlify
+2. Set build command: `npm run build`
+3. Set publish directory: `.next`
+4. Add environment variables in Netlify dashboard
+5. Deploy!
 
-```bash
-npm run build
-npm start
-```
+### Vercel Deployment
+1. Import your project to Vercel
+2. Add environment variables
+3. Deploy automatically on every push
 
-Or deploy to Vercel, Netlify, or any other hosting platform that supports Next.js.
+## License
+
+This project is proprietary and confidential. All rights reserved.
