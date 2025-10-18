@@ -1,0 +1,29 @@
+# Netlify redirects for Next.js App Router
+# This file should be in the public/ directory
+
+# API routes - proxy to Next.js API
+/api/* /api/:splat 200
+
+# Handle client-side routing for SPA
+/* /index.html 200
+
+# Specific redirects for better SEO
+/dashboard /dashboard 200
+/patient-portal /patient-portal 200
+/doctor-dashboard /doctor-dashboard 200
+/health-monitoring /health-monitoring 200
+/consultation /consultation 200
+/health-history /health-history 200
+/settings /settings 200
+/login /login 200
+
+# AI Features
+/ai-features /ai-features 200
+/ai-features/health-qa /ai-features/health-qa 200
+/ai-features/lab-reports /ai-features/lab-reports 200
+/ai-features/symptom-checker /ai-features/symptom-checker 200
+/ai-features/voice-interaction /ai-features/voice-interaction 200
+
+# Test pages
+/test-voice /test-voice 200
+/vitals-demo /vitals-demo 200
