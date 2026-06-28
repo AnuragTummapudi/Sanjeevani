@@ -1,6 +1,6 @@
 # Sanjeevan Health Platform
 
-A comprehensive AI-powered health diagnostics platform built with modern web technologies. Sanjeevan provides advanced medical intelligence through accessible and precise healthcare solutions.
+A comprehensive AI-powered health diagnostics platform built with modern web technologies. Sanjeevan provides advanced medical intelligence through accessible and precise healthcare solutionss. 
 
 ## Features
 
